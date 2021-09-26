@@ -6,8 +6,8 @@ public class Main {
     public static void main(String[] args) throws IOException {
         Totfast totem = new Totfast();
         Scanner scan = new Scanner(System.in);
-        Users user = new Users();
-        Administrator admin = new Administrator();
+        Usuarios user = new Usuarios();
+        Administrador admin = new Administrador();
 
         while (true) {
             totem.cls();
