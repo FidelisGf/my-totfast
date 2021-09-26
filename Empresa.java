@@ -13,9 +13,9 @@ public class Empresa {
     }
 
     Empresa(String newName, String newAddress, String newCnpj) {
-        this.name = newName;
-        this.address = newAddress;
-        this.cnpj = newCnpj;
+        this.name = "NOME: " + newName;
+        this.address = "ENDERECO: " +  newAddress;
+        this.cnpj = "CNPJ: " + newCnpj;
     }
 
     public String getName() {
@@ -46,9 +46,9 @@ public class Empresa {
         FileWriter file = new FileWriter("./config/empresa.txt");
         PrintWriter fileW = new PrintWriter(file);
 
-        fileW.println("NOME: " + this.name.toUpperCase());
-        fileW.println("ENDERECO: " + this.address.toUpperCase());
-        fileW.println("CNPJ: " + this.cnpj.toUpperCase());
+        fileW.println(this.name.toUpperCase());
+        fileW.println(this.address.toUpperCase());
+        fileW.println(this.cnpj.toUpperCase());
 
         file.close();
 
