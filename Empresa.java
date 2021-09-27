@@ -134,7 +134,7 @@ public class Empresa {
         FileReader file = new FileReader("./config/empresa.txt");
         BufferedReader fileR = new BufferedReader(file);
         String textLine;
-
+        
         textLine = fileR.readLine();
         setName(textLine);
 
