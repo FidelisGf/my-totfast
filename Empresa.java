@@ -13,9 +13,9 @@ public class Empresa {
     }
 
     Empresa(String newName, String newAddress, String newCnpj) {
-        this.name = newName;
-        this.address = newAddress;
-        this.cnpj = newCnpj;
+        this.name = "NOME: " + newName;
+        this.address = "ENDERECO: " +  newAddress;
+        this.cnpj = "CNPJ: " + newCnpj;
     }
 
     public String getName() {
@@ -46,9 +46,9 @@ public class Empresa {
         FileWriter file = new FileWriter("./config/empresa.txt");
         PrintWriter fileW = new PrintWriter(file);
 
-        fileW.println("NOME: " + this.name.toUpperCase());
-        fileW.println("ENDERECO: " +  this.address.toUpperCase());
-        fileW.println("CNPJ: " + this.cnpj.toUpperCase());
+        fileW.println(this.name.toUpperCase());
+        fileW.println(this.address.toUpperCase());
+        fileW.println(this.cnpj.toUpperCase());
 
         file.close();
 
@@ -103,25 +103,25 @@ public class Empresa {
 
         if (option.equals("1")) {  // editar tudo
             System.out.print("Nome: ");
-            this.name = scan.nextLine();
+            this.name = "NOME: " + scan.nextLine();
 
             System.out.print("Endereco: ");
-            this.address = scan.nextLine();
+            this.address = "ENDERECO: " + scan.nextLine();
 
             System.out.print("CNPJ: ");
-            this.cnpj = scan.nextLine();
+            this.cnpj = "CNPJ: " + scan.nextLine();
         }
         else if (option.equals("2")) {  // editar nome
             System.out.print("Nome: ");
-            this.name = scan.nextLine();
+            this.name = "NOME: " + scan.nextLine();
         }
         else if (option.equals("3")) {  // editar endereco
             System.out.print("Endereco: ");
-            this.address = scan.nextLine();
+            this.address = "ENDERECO: " + scan.nextLine();
         }
         else if (option.equals("4")) {  // editar cnpj
             System.out.print("CNPJ: ");
-            this.cnpj = scan.nextLine();
+            this.cnpj = "CNPJ: " + scan.nextLine();
         }
         else {
             System.out.print("[ERRO] OPCAO INVALIDA! - Presione ENTER para continuar ");
@@ -136,13 +136,13 @@ public class Empresa {
         String textLine;
 
         textLine = fileR.readLine();
-        this.name = textLine;
+        setName(textLine);
 
         textLine = fileR.readLine();
-        this.address = textLine;
+        setAddress(textLine);
 
         textLine = fileR.readLine();
-        this.cnpj = textLine;
+        setCnpj(textLine);
 
         file.close();
     }
