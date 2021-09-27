@@ -13,9 +13,9 @@ public class Empresa {
     }
 
     Empresa(String newName, String newAddress, String newCnpj) {
-        this.name = "NOME: " + newName;
-        this.address = "ENDERECO: " +  newAddress;
-        this.cnpj = "CNPJ: " + newCnpj;
+        this.name = newName;
+        this.address = newAddress;
+        this.cnpj = newCnpj;
     }
 
     public String getName() {
@@ -67,10 +67,14 @@ public class Empresa {
 
             System.out.println("********************************");
             textLine = fileR.readLine();
-            while (textLine != null) {
-                System.out.println(textLine);
-                textLine = fileR.readLine();
-            }
+            System.out.println("NOME: " + textLine);
+
+            textLine = fileR.readLine();
+            System.out.println("ENDERECO: " + textLine);
+
+            textLine = fileR.readLine();
+            System.out.println("CNPJ: " + textLine);
+
             file.close();
             System.out.println("********************************");
 
@@ -103,25 +107,25 @@ public class Empresa {
 
         if (option.equals("1")) {  // editar tudo
             System.out.print("Nome: ");
-            this.name = "NOME: " + scan.nextLine();
+            this.name = scan.nextLine();
 
             System.out.print("Endereco: ");
-            this.address = "ENDERECO: " + scan.nextLine();
+            this.address = scan.nextLine();
 
             System.out.print("CNPJ: ");
-            this.cnpj = "CNPJ: " + scan.nextLine();
+            this.cnpj = scan.nextLine();
         }
         else if (option.equals("2")) {  // editar nome
             System.out.print("Nome: ");
-            this.name = "NOME: " + scan.nextLine();
+            this.name = scan.nextLine();
         }
         else if (option.equals("3")) {  // editar endereco
             System.out.print("Endereco: ");
-            this.address = "ENDERECO: " + scan.nextLine();
+            this.address = scan.nextLine();
         }
         else if (option.equals("4")) {  // editar cnpj
             System.out.print("CNPJ: ");
-            this.cnpj = "CNPJ: " + scan.nextLine();
+            this.cnpj = scan.nextLine();
         }
         else {
             System.out.print("[ERRO] OPCAO INVALIDA! - Presione ENTER para continuar ");
