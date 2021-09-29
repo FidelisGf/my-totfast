@@ -1,6 +1,6 @@
 import java.io.*;
 import java.util.*;
-
+// adicionar: total funcionarios / unidades / insumos
 public class Empresa {
     private String name;
     private String address;

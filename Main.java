@@ -11,18 +11,23 @@ public class Main {
 
         while (true) {
             totem.cls();
-            System.out.print("Username: ");
-            String username = scan.nextLine().toLowerCase();
+
+            System.out.print("Usuario: ");
+            String usuario = scan.nextLine().toLowerCase();
+
+            // System.out.print("Senha: ");
+            // String senha;
             
-            if (username.equals("quit")) { 
+            if (usuario.equals("quit")) { 
                 break; 
             }
 
-            user.setAccess(username);
+            user.setAccess(usuario);
             String access = user.getAccess();
+            access="administrador";
             
-            if (access.equals("administrator")) {
-                admin.runAdministrator();
+            if (access.equals("administrador")) {
+                admin.executaAdministrador();
             }
 
         }
