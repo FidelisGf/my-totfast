@@ -42,7 +42,8 @@ public class Menus {
         System.out.println("********************************");
         System.out.println("1 - Cadastrar Funcionario");
         System.out.println("2 - Visualizar Funcionarios");
-        System.out.println("3 - Voltar");
+        System.out.println("3 - Editar Funcionarios");
+        System.out.println("4 - Voltar");
         System.out.println("********************************");
         return scan.nextLine().trim();
     }

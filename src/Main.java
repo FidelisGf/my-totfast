@@ -13,7 +13,7 @@ public class Main {
             totem.cls();
 
             System.out.print("Usuario: ");
-            String usuario = scan.nextLine().toLowerCase();
+            String usuario = scan.nextLine().toLowerCase().trim();
 
             // System.out.print("Senha: ");
             // String senha;
@@ -22,14 +22,14 @@ public class Main {
                 break; 
             }
 
-            user.setAccess(usuario);
-            String access = user.getAccess();
-            access="administrador";
+//            user.setAccess(usuario);
+//            String access = user.getAccess();
+
+            String access="administrador";
             
             if (access.equals("administrador")) {
                 admin.executaAdministrador();
             }
-
         }
 
         scan.close();

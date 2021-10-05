@@ -1,5 +1,5 @@
 import java.io.*;
-import java.util.Scanner;
+import java.util.*;
 
 public class Usuarios {
     private int id;
@@ -10,15 +10,14 @@ public class Usuarios {
     private Totfast totem = new Totfast();
     private Scanner scan = new Scanner(System.in);
 
-
     Usuarios() {
 
     }
 
     Usuarios(int newId, String newUser, String newPassword,String newUnity, String newAccess) {
         this.id = newId;
-        this.username = newUser.trim();
-        this.password = newPassword.trim();
+        this.username = newUser.trim().replace(" ", "_");
+        this.password = newPassword.trim().replace(" ", "_");
         this.unity = newUnity.trim();
         this.access = newAccess.trim();
     }
@@ -86,7 +85,7 @@ public class Usuarios {
         FileWriter file = new FileWriter("./config/funcionarios.txt", true);
         PrintWriter fileW = new PrintWriter(file);
 
-        fileW.println(this.id + " " + this.username + " " + this.password + " " + this.unity + " " + this.access);
+        fileW.println(this.id + " | " + this.username + " | " + this.password + " | " + this.unity + " | " + this.access);
         file.close();
     }
 
@@ -101,17 +100,71 @@ public class Usuarios {
             String textLine = fileR.readLine();
             
             System.out.println("ID | NOME | SENHA | UNIDADE | ACESSO");
-            System.out.println("*************************************");
+            System.out.println("*************************************\n");
             while (textLine != null) {
                 System.out.println(textLine);
                 textLine = fileR.readLine();
             }
-            System.out.println("*************************************");
+            System.out.println("\n*************************************");
     
             file.close();
 
             System.out.print("\n\nPressione ENTER para continuar ");
             scan.nextLine();
+        }
+        else {
+            System.err.print("Nao possui funcionarios cadastrados! - Pressione ENTER para continuar ");
+            scan.nextLine();
+        }
+    }
+
+    public void editarFuncionarios() throws IOException {
+        File fileExists = new File("./config/funcionarios.txt");
+
+        // ler a linha do arquivo (string)
+        // separar a string em uma lista a partir do char ( | )
+        // guardar todas a listas (linhas) dentro de outra lista ([[][][]])
+        // verificar o indice a editar a partir do indice 0 da lista (id)
+        // reescrever o arquivo atualizado
+
+        if (fileExists.exists()) {
+            List<List> allLines = new ArrayList<List>();
+            FileReader file = new FileReader(fileExists);
+            BufferedReader fileR = new BufferedReader(file);
+            String text;
+            StringTokenizer token;
+            List<String> lines;
+
+
+            visualizarFuncionarios();
+
+            while (true) {
+                text = fileR.readLine();
+
+                if (text == null) {
+                    break;
+                }
+                else {
+                    token = new StringTokenizer(text, " | ");
+                    lines = new ArrayList<String>();
+
+                    while (token.hasMoreTokens()) {
+                        lines.add(token.nextToken());
+                    }
+                    allLines.add(lines);
+                }
+            }
+
+            System.out.print("\n\nInforme o ID do funcionario que deseja editar: ");
+            String idStaff = scan.nextLine().trim();
+
+            for (int i = 0; i < allLines.size(); i ++) {
+                if (idStaff.equals(allLines.get(i).get(0))) {
+                    System.out.println("Escolheu ===> " + allLines.get(i));
+                    scan.nextLine();
+                }
+            }
+
         }
         else {
             System.err.print("Nao possui funcionarios cadastrados! - Pressione ENTER para continuar ");

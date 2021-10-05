@@ -97,6 +97,9 @@ public class Administrador {
                         usuario.visualizarFuncionarios();
                     }
                     else if (option.equals("3")) {
+                        usuario.editarFuncionarios();
+                    }
+                    else if (option.equals("4")) {
                         break;
                     }
                     else {

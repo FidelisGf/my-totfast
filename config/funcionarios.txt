@@ -1,7 +1,3 @@
-9 nome 1234 xyz supervisor
-10 joao uni123 xyz funcionario
-12 test 1234 unidade_teste 2
-13 x y unidade_teste z
-14 admin admin unidade_teste supervisor
-15 ze $$#@123 unidade_teste funcionario
-16 x y unidade_teste 
+20 | ze | br@s1l | unidade_teste | administrador
+21 | z | z | unidade_teste | funcionario
+24 | joao_pedro | 1234 | unidade_teste | administrador
