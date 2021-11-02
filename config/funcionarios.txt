@@ -1,4 +1,0 @@
-20 | ze | br@s1l | unidade_teste | administrador
-21 | z | z | unidade_teste | funcionario
-24 | joao_pedro | 1234 | unidade_teste | administrador
-25 | joao_pedro_teste_denovo | xyz | unidade_teste | administrador
