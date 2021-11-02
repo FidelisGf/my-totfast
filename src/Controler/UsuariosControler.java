@@ -73,27 +73,33 @@ public class UsuariosControler {
         }
     }
 
+    public List<String> backupUsuarios(long id) throws IOException{
+        FileReader file = new FileReader(caminhoUsuarios);
+        BufferedReader fileR = new BufferedReader(file);
+        StringTokenizer token;
+        String bufferId;
+        String texto;
+        List<String> usuarios = new ArrayList<>();
+
+        while (true) {
+            texto = fileR.readLine();
+            if (texto == null) {
+                break;
+            }
+            token = new StringTokenizer(texto, " | ");
+            bufferId = token.nextToken();
+            if (id != Long.parseLong(bufferId)) {
+                usuarios.add(texto);
+            }
+        }
+        file.close();
+
+        return usuarios;  // lista dos usuarios
+    }
+
     public String editarUsuarioControler(Usuarios usuario) throws IOException{
         if (usuario.getAcessoUsuario() != null) {
-            FileReader file2 = new FileReader(caminhoUsuarios);
-            BufferedReader fileR = new BufferedReader(file2);
-            StringTokenizer token;
-            String bufferId;
-            String texto;
-            List<String> usuarios = new ArrayList<>();
-
-            while (true) {
-                texto = fileR.readLine();
-                if (texto == null) {
-                    break;
-                }
-                token = new StringTokenizer(texto, " | ");
-                bufferId = token.nextToken();
-                if (usuario.getIdUsuario()-1 != Long.parseLong(bufferId)) {
-                    usuarios.add(texto);
-                }
-            }
-            file2.close();
+            List<String> usuarios = backupUsuarios(usuario.getIdUsuario()-1);
             FileWriter file = new FileWriter(caminhoUsuarios);
             PrintWriter fileW = new PrintWriter(file);
 
@@ -101,7 +107,6 @@ public class UsuariosControler {
                 fileW.println(usuarios.get(i));
             }
             fileW.println(usuario);
-
             file.close();
 
             return usuario.getNomeUsuario() + " foi editado com sucesso!";
@@ -109,5 +114,18 @@ public class UsuariosControler {
         else {
             return "erro ao editar usuario!";
         }
+    }
+
+    public String deletarUsuarioControler(Usuarios usuario) throws IOException{
+        List<String> usuarios = backupUsuarios(usuario.getIdUsuario()-1);
+        FileWriter file = new FileWriter(caminhoUsuarios);
+        PrintWriter fileW = new PrintWriter(file);
+
+        for (int i = 0; i < usuarios.size(); i ++) {
+            fileW.println(usuarios.get(i));
+        }
+        file.close();
+
+        return "usuario foi deletado com sucesso!";
     }
 }
