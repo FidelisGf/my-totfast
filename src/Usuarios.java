@@ -155,11 +155,12 @@ public class Usuarios {
                 }
             }
 
-            System.out.print("\n\nInforme o ID do funcionario que deseja editar: ");
+            System.out.print("\nInforme o ID do funcionario que deseja editar: ");
             String idStaff = scan.nextLine().trim();
 
             for (int i = 0; i < allLines.size(); i ++) {
                 if (idStaff.equals(allLines.get(i).get(0))) {
+                    allLines.get(i).set(1, "outro Nome3");
                     System.out.println("Escolheu ===> " + allLines.get(i));
                     scan.nextLine();
                 }

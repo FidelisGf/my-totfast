@@ -97,4 +97,17 @@ public class Menus {
 
         return access;
     }
+
+    public String editarFuncionario() {
+        System.out.println("********************************");
+        System.out.println("1 - Editar todos os campos");
+        System.out.println("2 - Editar somente Nome");
+        System.out.println("3 - Editar somente Senha");
+        System.out.println("4 - Editar somente Unidade");
+        System.out.println("5 - Editar somente Acesso");
+        System.out.println("6 - Voltar");
+        System.out.println("********************************");
+
+        return scan.nextLine().trim();
+    }
 }
