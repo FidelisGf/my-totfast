@@ -10,6 +10,14 @@ public class UsuariosView {
     UsuariosControler controleUsuario = new UsuariosControler();
     Scanner scan = new Scanner(System.in);
 
+    public void loginUsuarioView() throws IOException {
+        System.out.print("Usuario: ");
+        usuario.setNomeUsuario(scan.nextLine().trim());
+        System.out.print("Senha: ");
+        usuario.setSenhaUsuario(scan.nextLine().trim());
+        controleUsuario.loginUsuarioControler(usuario);
+    }
+
     public void cadastroUsuarioView() throws IOException{
         String status;
 

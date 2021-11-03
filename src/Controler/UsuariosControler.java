@@ -1,8 +1,8 @@
 package Controler;
 import Model.*;
+import View.AdministradorView;
 
 import java.io.*;
-import java.text.FieldPosition;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -127,5 +127,52 @@ public class UsuariosControler {
         file.close();
 
         return "usuario foi deletado com sucesso!";
+    }
+
+    public void loginUsuarioControler(Usuarios usuario) throws IOException{  // get() > 1 = usuario, 2 = senha, 3 = acesso
+        if (caminhoUsuarios.exists()) {
+            FileReader file = new FileReader(caminhoUsuarios);
+            BufferedReader fileR = new BufferedReader(file);
+            StringTokenizer token;
+            String texto;
+            List<String> linha;
+            String acesso = "";
+
+            while (true) {
+                linha = new ArrayList<>();
+                texto = fileR.readLine();
+                if (texto == null) {
+                    break;
+                }
+                token = new StringTokenizer(texto, " | ");
+                while (token.hasMoreTokens()) {
+                    linha.add(token.nextToken());
+                }
+                if (linha.get(1).equals(usuario.getNomeUsuario())) {
+                    if (linha.get(2).equals(usuario.getSenhaUsuario())) {
+                        acesso = linha.get(3);
+
+                        // seta o restante dos valores no usuario
+                        usuario.setIdUsuario(Long.parseLong(linha.get(0))-1);
+                        usuario.setAcessoUsuario(acesso);
+                        usuario.setUnidadeUsuario(linha.get(4));
+                        break;
+                    }
+                }
+            }
+            file.close();
+
+            // redireciona para a classe responsavel, de acordo com o login de acesso
+            if (acesso.equals("administrador")) {
+                AdministradorView adm = new AdministradorView();
+                adm.menuAdministradorView(usuario);
+            }
+            else if (acesso.equals("supervisor")) {
+
+            }
+            else if (acesso.equals("funcionario")) {
+
+            }
+        }
     }
 }
