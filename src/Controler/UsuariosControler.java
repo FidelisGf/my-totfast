@@ -151,11 +151,6 @@ public class UsuariosControler {
                 if (linha.get(1).equals(usuario.getNomeUsuario())) {
                     if (linha.get(2).equals(usuario.getSenhaUsuario())) {
                         acesso = linha.get(3);
-
-                        // seta o restante dos valores no usuario
-                        usuario.setIdUsuario(Long.parseLong(linha.get(0))-1);
-                        usuario.setAcessoUsuario(acesso);
-                        usuario.setUnidadeUsuario(linha.get(4));
                         break;
                     }
                 }
@@ -165,7 +160,7 @@ public class UsuariosControler {
             // redireciona para a classe responsavel, de acordo com o login de acesso
             if (acesso.equals("administrador")) {
                 AdministradorView adm = new AdministradorView();
-                adm.menuAdministradorView(usuario);
+                adm.menuAdministradorView(Long.parseLong(linha.get(0)));  // manda o id do adm pra classe dele
             }
             else if (acesso.equals("supervisor")) {
 

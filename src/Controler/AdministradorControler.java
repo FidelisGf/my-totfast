@@ -1,4 +1,5 @@
 package Controler;
+import Model.Empresa;
 import View.*;
 
 import java.io.IOException;
@@ -8,6 +9,8 @@ public class AdministradorControler {
 
     public boolean menuAdmistradorControler(String option) throws IOException{
         AdministradorView adm = new AdministradorView();
+        EmpresaView empresa = new EmpresaView();
+
         boolean msg = true;
 
         if (option.equals("1")) {  // empresa

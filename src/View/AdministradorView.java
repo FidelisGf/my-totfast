@@ -8,12 +8,10 @@ import java.util.*;
 
 public class AdministradorView {
     AdministradorControler controleAdm = new AdministradorControler();
-    Administrador adm;
     Scanner scan = new Scanner(System.in);
 
-    public void menuAdministradorView(Usuarios usuario) throws IOException {
+    public void menuAdministradorView(long idAdm) throws IOException {
         boolean status = true;
-        adm = new Administrador(usuario.getIdUsuario(), usuario.getNomeUsuario(), usuario.getSenhaUsuario(), "administrador", usuario.getUnidadeUsuario());
 
         while (status) {
             System.out.println("*****************************");

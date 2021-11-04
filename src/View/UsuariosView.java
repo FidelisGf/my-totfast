@@ -50,7 +50,7 @@ public class UsuariosView {
 
         if (! status.equals("usuario nao encontrado!") && ! status.equals("nenhum usuario cadastrado!")) {  // se usuario existe
 
-            System.out.print("1 - Editar / 2 - Deletar / outro - Cancelar: ");
+            System.out.print("\n1 - Editar / 2 - Deletar / outro - Cancelar: ");
             String option = scan.nextLine().trim();
 
             if (option.equals("1")) {
