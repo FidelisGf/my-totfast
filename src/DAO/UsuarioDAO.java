@@ -1,16 +1,46 @@
-package Controler;
+package DAO;
+
+import java.io.*;
 import Model.*;
-import View.AdministradorView;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-public class UsuariosControler {
-    private File caminhoUsuarios = new File("./config/usuarios");
+public class UsuarioDAO {
+    private long idUsuario;
+    private File caminhoUsuarios = new File("./config/usuarios.txt");
+    private File caminhoIdUsuario = new File("./config/idUsuarios.txt");
 
-    public String cadastroUsuarioControler(Usuarios usuario) throws IOException {
+    public long getIdUsuario() throws IOException {
+        if (caminhoIdUsuario.exists()) {  // se ja tiver alguem cadastrado
+            FileReader file = new FileReader(caminhoIdUsuario);
+            BufferedReader fileR = new BufferedReader(file);
+            this.idUsuario = Long.parseLong(fileR.readLine());
+            file.close();
+        }
+        else {  // nao existe id cadastrado, entao cria o arquivo com o id (0)
+            FileWriter file = new FileWriter(caminhoIdUsuario);
+            PrintWriter fileW = new PrintWriter(file);
+
+            fileW.println("0");  // id inicial (0)
+            file.close();
+            this.idUsuario = 0;
+        }
+
+        return this.idUsuario + 1;
+    }
+
+    public void setIdUsuario(long idUsuario) throws IOException{
+        FileWriter file = new FileWriter(caminhoIdUsuario);
+        PrintWriter fileW = new PrintWriter(file);
+        fileW.println(idUsuario);
+        file.close();
+        this.idUsuario = idUsuario;
+    }
+
+    public String cadastroUsuarioDAO(Usuario usuario) throws IOException {
         if (usuario.getAcessoUsuario() != null) {
             FileWriter file = new FileWriter(caminhoUsuarios, true);
             PrintWriter fileW = new PrintWriter(file);
@@ -23,7 +53,7 @@ public class UsuariosControler {
         }
     }
 
-    public String visualizarUsuarioControler() throws IOException{
+    public String visualizarUsuarioDAO() throws IOException{
         if (caminhoUsuarios.exists()) {
             FileReader file = new FileReader(caminhoUsuarios);
             BufferedReader fileR = new BufferedReader(file);
@@ -44,7 +74,7 @@ public class UsuariosControler {
         }
     }
 
-    public String visualizarUsuarioPorId(String id) throws IOException{
+    public String visualizarUsuarioByIdDAO(String id) throws IOException{
         if (caminhoUsuarios.exists()) {
             FileReader file = new FileReader(caminhoUsuarios);
             BufferedReader fileR = new BufferedReader(file);
@@ -89,6 +119,7 @@ public class UsuariosControler {
             token = new StringTokenizer(texto, " | ");
             bufferId = token.nextToken();
             if (id != Long.parseLong(bufferId)) {
+                System.out.println("id="+id+"|buffer="+bufferId);
                 usuarios.add(texto);
             }
         }
@@ -97,9 +128,9 @@ public class UsuariosControler {
         return usuarios;  // lista dos usuarios
     }
 
-    public String editarUsuarioControler(Usuarios usuario) throws IOException{
+    public String editarUsuarioDAO(Usuario usuario) throws IOException{
         if (usuario.getAcessoUsuario() != null) {
-            List<String> usuarios = backupUsuarios(usuario.getIdUsuario()-1);
+            List<String> usuarios = backupUsuarios(usuario.getIdUsuario());
             FileWriter file = new FileWriter(caminhoUsuarios);
             PrintWriter fileW = new PrintWriter(file);
 
@@ -116,8 +147,8 @@ public class UsuariosControler {
         }
     }
 
-    public String deletarUsuarioControler(Usuarios usuario) throws IOException{
-        List<String> usuarios = backupUsuarios(usuario.getIdUsuario()-1);
+    public String deletarUsuarioDAO(Usuario usuario) throws IOException{
+        List<String> usuarios = backupUsuarios(usuario.getIdUsuario());
         FileWriter file = new FileWriter(caminhoUsuarios);
         PrintWriter fileW = new PrintWriter(file);
 
@@ -129,14 +160,14 @@ public class UsuariosControler {
         return "usuario foi deletado com sucesso!";
     }
 
-    public void loginUsuarioControler(Usuarios usuario) throws IOException{  // get() > 1 = usuario, 2 = senha, 3 = acesso
+    public String loginUsuarioDAO(Usuario usuario) throws IOException{  // get() > 1 = usuario, 2 = senha, 3 = acesso
         if (caminhoUsuarios.exists()) {
             FileReader file = new FileReader(caminhoUsuarios);
             BufferedReader fileR = new BufferedReader(file);
             StringTokenizer token;
             String texto;
             List<String> linha;
-            String acesso = "";
+            String acesso = null;
 
             while (true) {
                 linha = new ArrayList<>();
@@ -151,23 +182,16 @@ public class UsuariosControler {
                 if (linha.get(1).equals(usuario.getNomeUsuario())) {
                     if (linha.get(2).equals(usuario.getSenhaUsuario())) {
                         acesso = linha.get(3);
+                        acesso += "|" + linha.get(0);
                         break;
                     }
                 }
             }
             file.close();
-
-            // redireciona para a classe responsavel, de acordo com o login de acesso
-            if (acesso.equals("administrador")) {
-                AdministradorView adm = new AdministradorView();
-                adm.menuAdministradorView(Long.parseLong(linha.get(0)));  // manda o id do adm pra classe dele
-            }
-            else if (acesso.equals("supervisor")) {
-
-            }
-            else if (acesso.equals("funcionario")) {
-
-            }
+            return acesso;
+        }
+        else {
+            return "";
         }
     }
 }

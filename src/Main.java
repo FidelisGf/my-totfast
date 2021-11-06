@@ -3,7 +3,7 @@ import java.io.*;
 
 public class Main{
     public static void main(String[] args) throws  IOException{
-        UsuariosView u = new UsuariosView();
+        UsuarioView u = new UsuarioView();
         u.loginUsuarioView();
     }
 }

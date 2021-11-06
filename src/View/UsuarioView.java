@@ -4,24 +4,29 @@ import Model.*;
 import Controler.*;
 import java.util.Scanner;
 import java.io.*;
+import DAO.*;
 
-public class UsuariosView {
-    Usuarios usuario = new Usuarios();
-    UsuariosControler controleUsuario = new UsuariosControler();
+public class UsuarioView {
+    Usuario usuario = new Usuario();
+    UsuarioController controleUsuario = new UsuarioController();
     Scanner scan = new Scanner(System.in);
+    UsuarioDAO usuarioDao = new UsuarioDAO();
 
     public void loginUsuarioView() throws IOException {
+        String status;
         System.out.print("Usuario: ");
         usuario.setNomeUsuario(scan.nextLine().trim());
         System.out.print("Senha: ");
         usuario.setSenhaUsuario(scan.nextLine().trim());
-        controleUsuario.loginUsuarioControler(usuario);
+        status = controleUsuario.loginUsuarioController(usuario);
+        System.out.println(status);
     }
 
     public void cadastroUsuarioView() throws IOException{
         String status;
 
-        usuario.setIdUsuario(usuario.getIdUsuario());
+        usuario.setIdUsuario(usuarioDao.getIdUsuario());
+        usuarioDao.setIdUsuario(usuario.getIdUsuario());
         System.out.print("Usuario: ");
         usuario.setNomeUsuario(scan.nextLine().trim());
         System.out.print("Senha: ");
@@ -31,12 +36,12 @@ public class UsuariosView {
         System.out.print("Unidade: ");
         usuario.setUnidadeUsuario(scan.nextLine().trim());
 
-        status = controleUsuario.cadastroUsuarioControler(usuario);
+        status = controleUsuario.cadastroUsuarioController(usuario);
         System.out.println(status);
     }
 
     public void visualizarUsuarioView() throws IOException {
-        String usuarios = controleUsuario.visualizarUsuarioControler();
+        String usuarios = controleUsuario.visualizarUsuarioController();
         System.out.println(usuarios);
     }
 
@@ -45,7 +50,7 @@ public class UsuariosView {
         System.out.print("Digite o ID do usuario que deseja editar: ");
         String id = scan.nextLine().trim();
 
-        status = controleUsuario.visualizarUsuarioPorId(id);
+        status = controleUsuario.visualizarUsuarioByIdController(id);
         System.out.println(status);
 
         if (! status.equals("usuario nao encontrado!") && ! status.equals("nenhum usuario cadastrado!")) {  // se usuario existe
@@ -64,7 +69,7 @@ public class UsuariosView {
                 System.out.print("Unidade: ");
                 usuario.setUnidadeUsuario(scan.nextLine().trim());
 
-                status = controleUsuario.editarUsuarioControler(usuario);
+                status = controleUsuario.editarUsuarioController(usuario);
                 System.out.println(status);
             }
             else if (option.equals("2")) {
@@ -72,7 +77,7 @@ public class UsuariosView {
                 String confirma = scan.nextLine().trim().toLowerCase();
                 if (confirma.equals("sim")) {
                     usuario.setIdUsuario(Long.parseLong(id));
-                    status = controleUsuario.deletarUsuarioControler(usuario);
+                    status = controleUsuario.deletarUsuarioController(usuario);
                     System.out.println(status);
                 }
             }
