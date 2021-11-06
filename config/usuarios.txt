@@ -1,3 +1,4 @@
 1 | admin | admin | administrador | admin
 2 | supervisor | supervisor | supervisor | supervisor
 3 | teste | teste | funcionario | teste
+4 | joao | 1234 | supervisor | shit

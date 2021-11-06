@@ -8,6 +8,7 @@ public class AdministradorController {
     public void menuAdmistradorController(String option) throws IOException{
         AdministradorView adm = new AdministradorView();
         EmpresaView empresa = new EmpresaView();
+        UsuarioView usuario = new UsuarioView();
 
 
         if (option.equals("1")) {  // empresa
@@ -18,26 +19,9 @@ public class AdministradorController {
             adm.menuAdministradorView();
         }
         else if (option.equals("3")) {  // funcionarios
-            adm.funcionarioAdministradorView();
+            usuario.funcionarioView();
             adm.menuAdministradorView();
         }
     }
 
-    public void funcionarioAdministradorController(String option) throws IOException {
-        UsuarioView usuario = new UsuarioView();
-        AdministradorView adm = new AdministradorView();
-
-        if (option.equals("1")) {  // cadastrar funcionario
-            usuario.cadastroUsuarioView();
-            adm.funcionarioAdministradorView();
-        }
-        else if (option.equals("2")) {  // visualizar funcionario
-            usuario.visualizarUsuarioView();
-            adm.funcionarioAdministradorView();
-        }
-        else if (option.equals("3")) {  // editar funcionario
-            usuario.editarUsuarioView();
-            adm.funcionarioAdministradorView();
-        }
-    }
 }

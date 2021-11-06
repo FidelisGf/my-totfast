@@ -25,14 +25,4 @@ public class AdministradorView {
         System.out.println("*****************************");
         controleAdm.menuAdmistradorController(scan.nextLine().trim());
     }
-
-    public void funcionarioAdministradorView() throws IOException{
-        System.out.println("*****************************");
-        System.out.println("1 - Cadastrar Funcionario");
-        System.out.println("2 - Visualizar Funcionarios");
-        System.out.println("3 - Editar Funcionarios");
-        System.out.println("outro - Voltar");
-        System.out.println("*****************************");
-        controleAdm.funcionarioAdministradorController(scan.nextLine().trim());
-    }
 }

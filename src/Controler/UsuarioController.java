@@ -5,6 +5,8 @@ import View.AdministradorView;
 import java.io.*;
 
 import DAO.*;
+import View.UsuarioView;
+
 import java.util.StringTokenizer;
 
 
@@ -50,5 +52,22 @@ public class UsuarioController {
             }
         }
         return "usuario nao cadastrado!";
+    }
+
+    public void funcionarioController(String option) throws IOException {
+        UsuarioView usuario = new UsuarioView();
+
+        if (option.equals("1")) {  // cadastrar funcionario
+            usuario.cadastroUsuarioView();
+            usuario.funcionarioView();
+        }
+        else if (option.equals("2")) {  // visualizar funcionario
+            usuario.visualizarUsuarioView();
+            usuario.funcionarioView();
+        }
+        else if (option.equals("3")) {  // editar funcionario
+            usuario.editarUsuarioView();
+            usuario.funcionarioView();
+        }
     }
 }

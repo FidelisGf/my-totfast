@@ -119,7 +119,6 @@ public class UsuarioDAO {
             token = new StringTokenizer(texto, " | ");
             bufferId = token.nextToken();
             if (id != Long.parseLong(bufferId)) {
-                System.out.println("id="+id+"|buffer="+bufferId);
                 usuarios.add(texto);
             }
         }

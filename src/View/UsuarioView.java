@@ -12,6 +12,16 @@ public class UsuarioView {
     Scanner scan = new Scanner(System.in);
     UsuarioDAO usuarioDao = new UsuarioDAO();
 
+    public void funcionarioView() throws IOException{
+        System.out.println("*****************************");
+        System.out.println("1 - Cadastrar Funcionario");
+        System.out.println("2 - Visualizar Funcionarios");
+        System.out.println("3 - Editar Funcionarios");
+        System.out.println("outro - Voltar");
+        System.out.println("*****************************");
+        controleUsuario.funcionarioController(scan.nextLine().trim());
+    }
+
     public void loginUsuarioView() throws IOException {
         String status;
         System.out.print("Usuario: ");
