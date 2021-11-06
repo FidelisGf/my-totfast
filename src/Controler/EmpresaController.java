@@ -1,5 +1,5 @@
 package Controler;
-import DAO.EmpresaDAO;
+import Dao.EmpresaDAO;
 import Model.*;
 import View.*;
 import java.io.*;

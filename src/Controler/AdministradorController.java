@@ -9,6 +9,7 @@ public class AdministradorController {
         AdministradorView adm = new AdministradorView();
         EmpresaView empresa = new EmpresaView();
         UsuarioView usuario = new UsuarioView();
+        UnidadeView unidade = new UnidadeView();
 
 
         if (option.equals("1")) {  // empresa
@@ -16,6 +17,7 @@ public class AdministradorController {
             adm.menuAdministradorView();
         }
         else if (option.equals("2")) {  // unidades
+            unidade.menuUnidade();
             adm.menuAdministradorView();
         }
         else if (option.equals("3")) {  // funcionarios

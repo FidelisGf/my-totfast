@@ -4,7 +4,7 @@ import Model.*;
 import Controler.*;
 import java.util.Scanner;
 import java.io.*;
-import DAO.*;
+import Dao.*;
 
 public class UsuarioView {
     Usuario usuario = new Usuario();
